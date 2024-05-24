@@ -7,9 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "getAllDate",
+            query = "SELECT w FROM wordDTO w ORDER BY w.id"
+        )
+})
+
 @Table(name = "Word")
 public class wordDTO {
 
