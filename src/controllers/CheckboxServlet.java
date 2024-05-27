@@ -21,21 +21,34 @@ public class CheckboxServlet extends HttpServlet {
         // リクエストからIDとチェックボックスの値を取得
         int id = Integer.parseInt(request.getParameter("id"));
         String checkboxValue = request.getParameter("checkbox");
-        
+
         // チェックボックスの値をint型で管理する（チェックされている場合は1、されていない場合は0）
         int fragment = checkboxValue != null && checkboxValue.equals("on") ? 1 : 0;
-        
-        // データベースから対応するレコードを取得
+
         EntityManager em = DBUtil.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        
-        wordDTO record = em.find(wordDTO.class, id);
-        record.setFragment(fragment);
-        
-        tx.commit();
-        em.close();
-        
+
+        try {
+            tx.begin();
+
+            // データベースから対応するレコードを取得
+            wordDTO record = em.find(wordDTO.class, id);
+
+            // チェックボックスの値でフラグメントを更新
+            record.setFragment(fragment);
+
+            // トランザクションをコミット
+            tx.commit();
+        } catch (Exception e) {
+            // トランザクションのロールバック
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new ServletException(e);
+        } finally {
+            em.close();
+        }
+
         // JSPにチェック状態を渡す
         request.setAttribute("isChecked", fragment);
         request.getRequestDispatcher("/random.jsp").forward(request, response);

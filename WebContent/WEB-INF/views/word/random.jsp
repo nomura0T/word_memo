@@ -9,7 +9,7 @@
 <body>
     <h2>ランダムなレコード</h2>
     <c:if test="${not empty randomRecord}">
-        <p>名前: ${randomRecord.name}</p>
+        <p>単語: ${randomRecord.name}</p>
         <form action="meaning" method="post">
             <input type="hidden" name="id" value="${randomRecord.id}">
             <input type="submit" value="意味を表示">
@@ -19,6 +19,11 @@
             <input type="checkbox" name="checkbox"> チェック
             <input type="submit" value="送信">
         </form>
+        
+         <form action="nextRecord" method="post">
+        <input type="hidden" name="id" value="${randomRecord.id}">
+        <input type="submit" value="次へ">
+    </form>
     </c:if>
     <c:if test="${empty randomRecord}">
         <p>ランダムなレコードが見つかりませんでした。</p>
