@@ -10,11 +10,16 @@
     <h2>ランダムなレコード</h2>
     <c:if test="${not empty randomRecord}">
         <p>単語: ${randomRecord.name}</p>
+        
+              <!-- 意味を表示する部分 -->
+        <p>意味: ${meaning}</p>
+        
         <form action="meaning" method="post">
             <input type="hidden" name="id" value="${randomRecord.id}">
             <input type="submit" value="意味を表示">
         </form>
-        <form action="checkbox" method="post">
+     
+        <form action="Checkbox" method="post">
             <input type="hidden" name="id" value="${randomRecord.id}">
             <input type="checkbox" name="checkbox"> チェック
             <input type="submit" value="送信">

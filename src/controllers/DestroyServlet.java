@@ -44,6 +44,7 @@ public class DestroyServlet extends HttpServlet {
             em.getTransaction().commit();
             em.close();
 
+            //a
             // セッションスコープ上の不要になったデータを削除
             request.getSession().removeAttribute("word_id");
 

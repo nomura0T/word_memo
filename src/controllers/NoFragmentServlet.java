@@ -1,41 +1,32 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NoFragmentServlet
- */
+import models.Word;
+import util.DBUtil;
+
 @WebServlet("/nofragment")
 public class NoFragmentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NoFragmentServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        EntityManager entityManager = DBUtil.createEntityManager();
+        TypedQuery<Word> query = entityManager.createQuery("SELECT w FROM Word w WHERE w.fragment = 0", Word.class);
+        List<Word> words = query.getResultList();
+        entityManager.close();
+
+        Random random = new Random();
+        Word word = words.get(random.nextInt(words.size()));
+
+        request.setAttribute("word", word);
+        request.getRequestDispatcher("nofragment.jsp").forward(request, response);
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
