@@ -17,7 +17,7 @@ import javax.persistence.Table;
 })
 
 @Table(name = "word")
-public class wordDTO {
+public class Word {
 
     @Id
     @Column(name = "ID")

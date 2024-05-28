@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.wordDTO;
+import models.Word;
 import util.DBUtil;
 
 @WebServlet("/random")
-public class StudyRandomServlet extends HttpServlet {
+public class RandomRecordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,11 +27,11 @@ public class StudyRandomServlet extends HttpServlet {
             EntityTransaction tx = em.getTransaction();
             tx.begin();
 
-            TypedQuery<wordDTO> query = em.createNamedQuery("getAllWordData", wordDTO.class);
-            List<wordDTO> records = query.getResultList();
+            TypedQuery<Word> query = em.createNamedQuery("getAllWordData", Word.class);
+            List<Word> records = query.getResultList();
 
             Random random = new Random();
-            wordDTO randomRecord = null;
+            Word randomRecord = null;
             if (records != null && !records.isEmpty()) {
                 int randomIndex = random.nextInt(records.size());
                 randomRecord = records.get(randomIndex);

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.wordDTO;
+import models.Word;
 import util.DBUtil;
 
 @WebServlet("/checkbox")
@@ -32,7 +32,7 @@ public class CheckboxServlet extends HttpServlet {
             tx.begin();
 
             // データベースから対応するレコードを取得
-            wordDTO record = em.find(wordDTO.class, id);
+            Word record = em.find(Word.class, id);
 
             // チェックボックスの値でフラグメントを更新
             record.setFragment(fragment);

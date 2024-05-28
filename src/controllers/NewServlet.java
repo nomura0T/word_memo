@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.wordDTO;
+import models.Word;
 
 /**
  * Servlet implementation class NewServlet
@@ -34,7 +34,7 @@ public class NewServlet extends HttpServlet {
         request.setAttribute("_token", request.getSession().getId());
 
         // おまじないとしてのインスタンスを生成
-        request.setAttribute("word", new wordDTO());
+        request.setAttribute("word", new Word());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/word/new.jsp");
         rd.forward(request, response);

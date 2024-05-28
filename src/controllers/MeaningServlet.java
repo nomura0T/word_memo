@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.wordDTO;
+import models.Word;
 import util.DBUtil;
 
 @WebServlet("/meaning")
@@ -24,7 +24,7 @@ public class MeaningServlet extends HttpServlet {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
-        wordDTO record = em.find(wordDTO.class, id);
+        Word record = em.find(Word.class, id);
         
         tx.commit();
         em.close();

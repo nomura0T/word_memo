@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.wordDTO;
+import models.Word;
 import util.DBUtil;
 
 /**
@@ -35,7 +35,7 @@ public class EditServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         // 該当のIDのメッセージ1件のみをデータベースから取得
-        wordDTO e = em.find(wordDTO.class, Integer.parseInt(request.getParameter("id")));
+        Word e = em.find(Word.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.wordDTO;
+import models.Word;
 import util.DBUtil;
 
 /**
@@ -28,11 +28,11 @@ public class NextRecordServlet extends HttpServlet {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        TypedQuery<wordDTO> query = em.createQuery("SELECT w FROM wordDTO w WHERE w.id > :id ORDER BY w.id ASC", wordDTO.class);
+        TypedQuery<Word> query = em.createQuery("SELECT w FROM wordDTO w WHERE w.id > :id ORDER BY w.id ASC", Word.class);
         query.setParameter("id", Integer.parseInt(request.getParameter("id")));
         query.setMaxResults(1);
-        List<wordDTO> records = query.getResultList();
-        wordDTO randomRecord = null;
+        List<Word> records = query.getResultList();
+        Word randomRecord = null;
         if (records != null && !records.isEmpty()) {
             randomRecord = records.get(0);
         }
