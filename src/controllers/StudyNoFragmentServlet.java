@@ -16,7 +16,7 @@ import models.Word;
 import util.DBUtil;
 
 @WebServlet("/nofragment")
-public class NoFragmentServlet extends HttpServlet {
+public class StudyNoFragmentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager entityManager = DBUtil.createEntityManager();
         TypedQuery<Word> query = entityManager.createQuery("SELECT w FROM Word w WHERE w.fragment = 0", Word.class);
@@ -26,7 +26,7 @@ public class NoFragmentServlet extends HttpServlet {
         Random random = new Random();
         Word word = words.get(random.nextInt(words.size()));
 
-        request.setAttribute("word", word);
-        request.getRequestDispatcher("nofragment.jsp").forward(request, response);
+        request.setAttribute("nofragment", word);
+        request.getRequestDispatcher("/WEB-INF/views/word/nofragment.jsp").forward(request, response);
     }
 }

@@ -19,11 +19,24 @@
             <input type="submit" value="意味を表示">
         </form>
      
-        <form action="Checkbox" method="post">
-            <input type="hidden" name="id" value="${randomRecord.id}">
-            <input type="checkbox" name="checkbox"> チェック
-            <input type="submit" value="送信">
-        </form>
+     
+    <form action="CheckboxServlet" method="post">
+    <input type="hidden" name="id" value="${randomRecord.id}">
+    <%-- データベースのfragmentの値が1の場合、チェックボックスをチェック済みにする --%>
+    <input type="checkbox" name="fragment" value="1" ${randomRecord.fragment == 1 ? 'checked' : ''}> Check to mark as complete<br>
+    <input type="hidden" name="fragment" value="0">
+    <input type="submit" value="覚えた！">
+</form>
+
+     
+   <form action="checkbox" method="post">
+    <input type="hidden" name="id" value="${randomRecord.id}">
+    <input type="checkbox" name="fragment" value="1" ${fragment == 1 ? 'checked' : ''}> Check to mark as complete<br>
+    <input type="hidden" name="fragmentHidden" value="0">
+    <input type="submit" value="覚えた！">
+</form>
+   
+ 
         
          <form action="nextRecord" method="post">
         <input type="hidden" name="id" value="${randomRecord.id}">

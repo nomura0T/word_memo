@@ -14,7 +14,7 @@ import models.Word;
 import util.DBUtil;
 
 @WebServlet("/meaning")
-public class MeaningServlet extends HttpServlet {
+public class Meaning_nServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,8 +31,8 @@ public class MeaningServlet extends HttpServlet {
 
             // JSPに意味を渡す
             request.setAttribute("meaning", record.getMean());
-            request.setAttribute("randomRecord", record); // ランダムなレコードも再度セットしておく
-            request.getRequestDispatcher("/WEB-INF/views/word/random.jsp").forward(request, response);
+            request.setAttribute("nofragment", record); // ランダムなレコードも再度セットしておく
+            request.getRequestDispatcher("/WEB-INF/views/word/nofragment.jsp").forward(request, response);
         } catch (Exception e) {
             if (tx.isActive()) {
                 tx.rollback();
