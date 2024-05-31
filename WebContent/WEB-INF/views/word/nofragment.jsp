@@ -28,13 +28,14 @@
         </form>
 
 
-     <form action="nofragment" method="post">
+     <form action="nofragment" method="get">
         <input type="submit" value="次へ">
     </form>
 
     </c:if>
     <c:if test="${empty nofragmnet}">
-        <p>レコードが見つかりませんでした。</p>
+        <p>全単語を閲覧しました。<br><a href="${pageContext.request.contextPath}/home">ホームへ戻る</a></p>
+
     </c:if>
 
     <p><a href="${pageContext.request.contextPath}/home">ホームへ戻る</a></p>

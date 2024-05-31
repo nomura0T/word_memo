@@ -8,14 +8,11 @@
 </head>
 <body>
     <h2>学習形式を選択してください:</h2>
-    <form action="selectmenu" method="post">
-        <select name="menu">
-            <option value="menu1">ランダム</option>
-            <option value="menu2">ジャンル別</option>
-            <option value="menu3">未学習のもの</option>
+    <div id="study">
+            <p><a href="${pageContext.request.contextPath}/random">ランダムに出題</a></p>
+             <p><a href="${pageContext.request.contextPath}/nofragment">未学習のものからランダムに出題</a></p>
+        </div>
 
-        </select>
-        <input type="submit" value="選択">
-    </form>
+
 </body>
 </html>
