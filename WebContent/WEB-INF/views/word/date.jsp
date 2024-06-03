@@ -20,7 +20,7 @@
             <input type="submit" value="意味を表示">
         </form>
 
-        <form action="checkbox" method="post">
+        <form action="checkboxd" method="post">
             <input type="hidden" name="id" value="${date.id}">
             <%-- データベースのfragmentの値が1の場合、チェックボックスをチェック済みにする --%>
             <input type="checkbox" name="fragment" value="1" ${date.fragment == 1 ? 'checked' : ''}> 学習済み<br>
@@ -29,9 +29,8 @@
         </form>
 
 
-        <form action="nextrecord" method="post">
-            <input type="hidden" name="id" value="${date.id}">
-            <input type="submit" value="次へ">
+          <form action="date" method="get">
+        <input type="submit" value="次へ">
         </form>
     </c:if>
     <c:if test="${empty date}">

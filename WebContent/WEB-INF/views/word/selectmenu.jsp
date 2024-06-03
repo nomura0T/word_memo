@@ -11,6 +11,7 @@
     <div id="study">
             <p><a href="${pageContext.request.contextPath}/random">ランダムに出題</a></p>
              <p><a href="${pageContext.request.contextPath}/nofragment">未学習のものからランダムに出題</a></p>
+               <p><a href="${pageContext.request.contextPath}/date">単語の追加順に出題</a></p>
         </div>
 
 
